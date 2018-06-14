@@ -3,6 +3,7 @@
 FROM hgrasland/root-tests
 LABEL Description="openSUSE Tumbleweed with ACTS installed" Version="0.1"
 CMD bash
+ARG ACTS_BUILD_TYPE=RelWithDebInfo
 
 
 # === SYSTEM SETUP ===
@@ -26,7 +27,7 @@ RUN cd acts-core && mkdir build && cd build                                    \
     && cmake -GNinja -DEIGEN_PREFER_EXPORTED_EIGEN_CMAKE_CONFIGURATION=FALSE   \
              -DACTS_BUILD_EXAMPLES=ON -DACTS_BUILD_INTEGRATION_TESTS=ON        \
              -DACTS_BUILD_MATERIAL_PLUGIN=ON -DACTS_BUILD_TGEO_PLUGIN=ON       \
-             -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+             -DCMAKE_BUILD_TYPE=$ACTS_BUILD_TYPE ..
 
 # Build the core ACTS library
 RUN cd acts-core/build && ninja
@@ -51,7 +52,7 @@ RUN cd acts-core/build && ninja clean
 # 
 # # Configure the ACTS test framework build
 # RUN cd acts-framework && mkdir build && cd build                               \
-#     && cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+#     && cmake -GNinja -DCMAKE_BUILD_TYPE=$ACTS_BUILD_TYPE ..
 # 
 # # Build and install the ACTS test framework
 # RUN cd acts-framework/build && ninja && ninja install
