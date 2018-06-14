@@ -11,7 +11,7 @@ RUN zypper ref && zypper dup -y
 # Install ACTS' extra build prerequisites.
 RUN zypper in -y boost-devel libboost_test1_66_0-devel                         \
                  libboost_program_options1_66_0-devel eigen3-devel doxygen     \
-                 graphviz
+                 graphviz python2
 
 
 # === INSTALL ACTS-CORE ===
@@ -55,3 +55,9 @@ RUN cd acts-core/build && ninja clean
 # RUN cd acts-framework/build && ninja && ninja install
 # 
 # # TODO: Check if some test framework example runs
+
+
+# === FINAL CLEAN UP ===
+
+# Discard the system package cache to save up space
+RUN zypper clean
