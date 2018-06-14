@@ -1,3 +1,5 @@
+# === DOCKER-SPECIFIC HACKERY ===
+
 FROM hgrasland/root-tests
 LABEL Description="openSUSE Tumbleweed with ACTS installed" Version="0.1"
 CMD bash
