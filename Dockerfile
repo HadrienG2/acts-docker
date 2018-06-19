@@ -35,6 +35,11 @@ RUN cd acts-core/build && ninja
 # Run the unit tests to check if everything is alright
 RUN cd acts-core/build && ctest -j8
 
+# Run integrations tests as well
+RUN cd acts-core/build/IntegrationTests                                        \
+    && ./PropagationTests                                                      \
+    && ./SeedingTest
+
 # Install the core ACTS library
 RUN cd acts-core/build && ninja install
 
