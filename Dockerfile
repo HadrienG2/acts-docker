@@ -12,8 +12,8 @@ ARG ACTS_BUILD_TYPE=RelWithDebInfo
 RUN zypper ref && zypper dup -y
 
 # Install ACTS' extra build prerequisites.
-RUN zypper in -y boost-devel libboost_test1_66_0-devel                         \
-                 libboost_program_options1_66_0-devel eigen3-devel doxygen     \
+RUN zypper in -y boost-devel libboost_test1_67_0-devel                         \
+                 libboost_program_options1_67_0-devel eigen3-devel doxygen     \
                  python2
 
 
