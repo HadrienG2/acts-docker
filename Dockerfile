@@ -1,20 +1,19 @@
 # === DOCKER-SPECIFIC HACKERY ===
 
-FROM hgrasland/root-tests
+FROM hgrasland/root-tests:latest-cxx14
 LABEL Description="openSUSE Tumbleweed with ACTS installed" Version="0.1"
 CMD bash
 ARG ACTS_BUILD_TYPE=RelWithDebInfo
 
 
+# TODO: Port the rest to Spack
+
 # === SYSTEM SETUP ===
 
-# Update the host system
-RUN zypper ref && zypper dup -y
-
 # Install ACTS' extra build prerequisites.
-RUN zypper in -y boost-devel libboost_test1_67_0-devel                         \
+RUN zypper in -y boost-devel cmake libboost_test1_67_0-devel                   \
                  libboost_program_options1_67_0-devel eigen3-devel doxygen     \
-                 python2
+                 ninja python2
 
 
 # === INSTALL ACTS-CORE ===
