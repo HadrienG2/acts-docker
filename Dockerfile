@@ -50,6 +50,9 @@ RUN cd ${ACTS_BUILD_DIR}/Tests                                                 \
     && spack env acts-core ./Surfaces/BoundaryCheckBenchmark
 
 # Finish installing ACTS
-RUN cd ${ACTS_SOURCE_DIR} && spack diy ${ACTS_SPACK_SPEC}
+RUN cd ${ACTS_SOURCE_DIR} && spack diy --quiet ${ACTS_SPACK_SPEC}
+
+# Discard the ACTS build directory to keep the Docker image small
+RUN spack clean ${ACTS_SPACK_SPEC}
 
 # TODO: Install acts-framework, once it is in a buildable state again
