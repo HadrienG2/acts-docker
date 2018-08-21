@@ -18,10 +18,12 @@ RUN cd /opt/spack                                                              \
 #
 # TODO: Add DD4hep plugin once it is working
 #
-ENV ACTS_SPACK_SPEC="acts-core@develop build_type=${ACTS_BUILD_TYPE} -dd4hep   \
+RUN echo "export ACTS_SPACK_SPEC=\"                                            \
+                     acts-core@develop build_type=${ACTS_BUILD_TYPE} -dd4hep   \
                                        +examples +integration_tests +legacy    \
                                        +material_plugin +tests +tgeo           \
-                     ^ ${ROOT_SPACK_SPEC}"
+                     ^ ${ROOT_SPACK_SPEC}\""                                   \
+         >> ${SETUP_ENV}
 
 # Build acts-core, do not install it yet
 RUN spack build ${ACTS_SPACK_SPEC}
