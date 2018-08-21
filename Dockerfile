@@ -52,7 +52,11 @@ RUN cd ${ACTS_BUILD_DIR}/Tests                                                 \
 # Finish installing ACTS
 RUN cd ${ACTS_SOURCE_DIR} && spack diy --quiet ${ACTS_SPACK_SPEC}
 
-# Discard the ACTS build directory to keep the Docker image small
-RUN spack clean ${ACTS_SPACK_SPEC}
+# Discard the ACTS build directory and the associated environment setup
+RUN spack clean ${ACTS_SPACK_SPEC}                                             \
+    && mv ${SETUP_ENV} ${SETUP_ENV}.old                                        \
+    && grep -E --invert-match "ACTS_(SOURCE|BUILD)_DIR" ${SETUP_ENV}.old       \
+            >> ${SETUP_ENV}                                                    \
+    && rm ${SETUP_ENV}.old
 
 # TODO: Install acts-framework, once it is in a buildable state again
