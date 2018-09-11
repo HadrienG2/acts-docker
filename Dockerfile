@@ -15,12 +15,10 @@ RUN cd /opt/spack                                                              \
     && git checkout HadrienG2/acts-package
 
 # This is the variant of the ACTS package which we are going to build
-#
-# TODO: Add DD4hep plugin once it is working
-#
 RUN echo "export ACTS_SPACK_SPEC=\"                                            \
-                     acts-core@develop build_type=${ACTS_BUILD_TYPE} -dd4hep   \
-                                       +examples +integration_tests +legacy    \
+                     acts-core@develop build_type=${ACTS_BUILD_TYPE} +dd4hep   \
+                                       +digitization +examples                 \
+                                       +integration_tests +json +legacy        \
                                        +material_plugin +tests +tgeo           \
                      ^ ${ROOT_SPACK_SPEC}\""                                   \
          >> ${SETUP_ENV}
