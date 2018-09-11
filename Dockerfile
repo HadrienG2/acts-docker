@@ -36,12 +36,12 @@ RUN export ACTS_SOURCE_DIR=`spack location --build-dir ${ACTS_SPACK_SPEC}`     \
 RUN cd ${ACTS_BUILD_DIR} && spack env acts-core ctest -j8
 
 # Run the integration tests as well
-RUN cd ${ACTS_BUILD_DIR}/IntegrationTests                                      \
+RUN cd ${ACTS_BUILD_DIR}/Tests/Integration                                     \
     && spack env acts-core ./PropagationTests                                  \
     && spack env acts-core ./SeedingTest
 
 # Run the benchmarks as well
-RUN cd ${ACTS_BUILD_DIR}/Tests                                                 \
+RUN cd ${ACTS_BUILD_DIR}/Tests/Core                                            \
     && spack env acts-core ./Propagator/EigenStepperBenchmark                  \
     && spack env acts-core ./Propagator/AtlasStepperBenchmark                  \
     && spack env acts-core ./Propagator/AtlasPropagatorBenchmark               \
