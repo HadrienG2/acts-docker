@@ -17,7 +17,7 @@ RUN echo "export ACTS_SPACK_SPEC=\"                                            \
                      acts-core@develop build_type=${ACTS_BUILD_TYPE} +dd4hep   \
                                        +digitization +examples                 \
                                        +integration_tests +json +legacy        \
-                                       +material_plugin +tests +tgeo           \
+                                       +material +tests +tgeo                  \
                      ^ ${ROOT_SPACK_SPEC}\""                                   \
          >> ${SETUP_ENV}
 
