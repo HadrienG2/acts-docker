@@ -6,9 +6,7 @@ ARG ACTS_BUILD_TYPE=RelWithDebInfo
 
 # Switch to a development branch of Spack with an updated ACTS package
 #
-# FIXME: This will need to be adapted when the ROOT image moves to a different
-#        version of ROOT recipe and the HadrienG2 remote is not around anymore.
-#        Ultimately, everything will be upstreamed, and we can remove this.
+# FIXME: Move back to official Spack repo once the ACTS package is upstreamed.
 #
 RUN cd /opt/spack                                                              \
     && git fetch HadrienG2                                                     \
