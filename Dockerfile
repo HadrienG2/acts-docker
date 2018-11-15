@@ -31,19 +31,19 @@ RUN export ACTS_SOURCE_DIR=`spack location --build-dir ${ACTS_SPACK_SPEC}`     \
             >> ${SETUP_ENV}
 
 # Run the unit tests
-RUN cd ${ACTS_BUILD_DIR} && spack env acts-core ctest -j8
+RUN cd ${ACTS_BUILD_DIR} && spack build-env acts-core ctest -j8
 
 # Run the integration tests as well
 RUN cd ${ACTS_BUILD_DIR}/Tests/Integration                                     \
-    && spack env acts-core ./PropagationTests                                  \
-    && spack env acts-core ./SeedingTest
+    && spack build-env acts-core ./PropagationTests                            \
+    && spack build-env acts-core ./SeedingTest
 
 # Run the benchmarks as well
 RUN cd ${ACTS_BUILD_DIR}/Tests/Core                                            \
-    && spack env acts-core ./Propagator/EigenStepperBenchmark                  \
-    && spack env acts-core ./Propagator/AtlasStepperBenchmark                  \
-    && spack env acts-core ./Propagator/AtlasPropagatorBenchmark               \
-    && spack env acts-core ./Surfaces/BoundaryCheckBenchmark
+    && spack build-env acts-core ./Propagator/EigenStepperBenchmark            \
+    && spack build-env acts-core ./Propagator/AtlasStepperBenchmark            \
+    && spack build-env acts-core ./Propagator/AtlasPropagatorBenchmark         \
+    && spack build-env acts-core ./Surfaces/BoundaryCheckBenchmark
 
 # Finish installing ACTS
 RUN cd ${ACTS_SOURCE_DIR} && spack diy --quiet ${ACTS_SPACK_SPEC}
