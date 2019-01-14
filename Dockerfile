@@ -42,7 +42,6 @@ RUN cd ${ACTS_BUILD_DIR}/Tests/Integration                                     \
 RUN cd ${ACTS_BUILD_DIR}/Tests/Core                                            \
     && spack build-env acts-core ./Propagator/EigenStepperBenchmark            \
     && spack build-env acts-core ./Propagator/AtlasStepperBenchmark            \
-    && spack build-env acts-core ./Propagator/AtlasPropagatorBenchmark         \
     && spack build-env acts-core ./Surfaces/BoundaryCheckBenchmark
 
 # Finish installing ACTS
