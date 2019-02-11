@@ -9,6 +9,7 @@ ARG ACTS_BUILD_TYPE=RelWithDebInfo
 # FIXME: Move back to official Spack repo once the ACTS package is upstreamed.
 #
 RUN cd /opt/spack                                                              \
+    && git remote add HadrienG2 https://github.com/HadrienG2/spack.git         \
     && git fetch HadrienG2                                                     \
     && git checkout HadrienG2/acts-package
 
